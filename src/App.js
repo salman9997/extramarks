@@ -27,7 +27,7 @@ class  App extends Component {
   render(){
 
     if(this.state.loader){
-return <h1>Loading.....!!!</h1>
+return <h1>Getting Data from Api.....!!!</h1>
     }else{
       return( 
         <div>
