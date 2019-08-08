@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React ,{Component} from 'react';
+import axios from 'axios';
+import {Card} from 'react-bootstrap'
+// import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class  App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      name:"",
+      data1:[],
+      loader:false
+    }
+  }
+   componentWillMount(){
+// alert("will mount")
+   }
+   componentDidMount(){
+     this.setState({loader:true})
+    axios.get('http://dummy.restapiexample.com/api/v1/employees')
+    .then((response)=> {
+      this.setState({data1:response.data, loader:false})
+      //  console.log(response.data)
+    })
+   }
+  render(){
+
+    if(this.state.loader){
+return <h1>Loading.....!!!</h1>
+    }else{
+      return( 
+        <div>
+        
+          {this.state.data1.map((item,k) =>(
+  <Card style={{ width: '18rem' }} key={k}>
+       
+       <Card.Body>
+       <Card.Title>{item.employee_name}</Card.Title>
+       <Card.Text>
+      {item.employee_salary}
+      </Card.Text>
+      <Card.Text>
+      {item.id}
+       </Card.Text>
+   
+  </Card.Body>
+</Card>) )}
+          
+          {/* {alert("render")} */}
+        
+        </div>
+        );
+    }
+  }
 }
 
 export default App;

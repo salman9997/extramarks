@@ -1,0 +1,19 @@
+.navbar{
+    margin-left:-10px;
+    color:white;
+     background-color: #F44336;
+     padding-left: 5px 16px; 
+     
+}
+.navbar:hover{
+    background-color: lightgrey ;
+    color:black;
+}
+.navlink{
+    color:black;
+    padding-left: 5px 16px; 
+}
+.navlink:hover{
+    background:lightgrey ;
+
+}
